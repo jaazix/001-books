@@ -1,6 +1,24 @@
-import { ButtonC, ButtonF, Form,FormCon, Input } from "../styled.components";
+import { ButtonC, ButtonF, Form,FormCon, Input, Container } from "../styled.components";
+import { useState } from "react";
+
+import axios from 'axios';
 
 const FormLog = () => {
+
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
+    const login = async():Promise<void> => {
+        const url = "http://localhost:3000/login";
+        const response = await axios.post(url, { 
+            email: email,
+            password: password 
+        });
+        await console.log(response.data.msg);
+        alert(response.data.msg);
+    }
+
+
 
     return (
         <>
@@ -8,11 +26,11 @@ const FormLog = () => {
         <Form>
             <FormCon>
             <label>Correo:</label>   
-            <Input type="email" placeholder="Enter Username" required></Input>
+            <Input type="email" placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} required></Input>
             <label>Password:</label>   
-            <Input type="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe tener una longitud de almenos 8 caracteres, contener al menos una numero,una mayuscula, una minuscula y un caracter especial ($#@&*_+-)" required></Input>
-            <ButtonF type="submit">Login</ButtonF>   
-            <ButtonC type="button"> Cancel</ButtonC>
+            <Input type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} required></Input>
+            <ButtonF onChange={login}>Login</ButtonF>   
+            <ButtonC > Cancel</ButtonC>
             </FormCon>
         </Form>
         </>

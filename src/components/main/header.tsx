@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import {Container,Button} from '../styled.components'
 import { useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
+
 const Header = () => {
 
     const navigate = useNavigate();
@@ -9,15 +11,14 @@ const Header = () => {
         navigate('/login');
     }
 
-    const getdata = async():Promise<void> => {
+    const axiosdata = async():Promise<void> => {
         const url = import.meta.env.VITE_API;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data.msg);
+        const response = await axios.get(url);
+        console.log(response.data.msg);
     }
 
     useEffect(() => {
-        getdata();
+        axiosdata();
     }, []);
 
     return (

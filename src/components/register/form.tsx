@@ -1,6 +1,8 @@
 import { ButtonC, ButtonF, Form,FormCon, Input } from "../styled.components";
 import { useState } from "react";
 
+import axios from 'axios';
+
 const FormReg = () => {
 
     const [name, setName] = useState<string>('');
@@ -8,14 +10,20 @@ const FormReg = () => {
     const [password, setPassword] = useState<string>('');
     const [password2, setPassword2] = useState<string>('');
 
-    function validateForm() {
-        if (password === password2) {
-            alert("Registro exitoso");
-            console.log("Registro exitoso");
-        } else {
+
+    const sendData = async():Promise<void> => {
+        if(password === password2){
+            const url = "http://localhost:3000/usuario";
+            const response = await axios.post(url, { 
+                nombre: name,
+                email: email,
+                password: password 
+            });
+            console.log(response.data.msg);
+            alert(response.data.msg);
+        }else{
             alert("Las contraseñas no coinciden");
         }
-
     }
     
 
@@ -32,7 +40,7 @@ const FormReg = () => {
             <Input type="password" placeholder="Ingresar Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe tener una longitud de almenos 8 caracteres, contener al menos una numero,una mayuscula, una minuscula y un caracter especial ($#@&*_+-)" onChange={(e) => setPassword(e.target.value)} required></Input>
             <label>Confirmar Contraseña:</label>   
             <Input type="password" placeholder="Ingresar Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe tener una longitud de almenos 8 caracteres, contener al menos una numero,una mayuscula, una minuscula y un caracter especial ($#@&*_+-)" onChange={(e) => setPassword2(e.target.value)} required></Input>
-            <ButtonF onClick={validateForm}>Register</ButtonF>   
+            <ButtonF onClick={sendData}>Register</ButtonF>   
             <ButtonC> Cancel</ButtonC>
             </FormCon>
         </Form>
