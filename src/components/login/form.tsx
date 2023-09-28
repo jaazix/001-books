@@ -1,38 +1,60 @@
-import { ButtonC, ButtonF, Form,FormCon, Input, Container } from "../styled.components";
+import { ButtonF, Form,FormCon, Input, Container } from "../styled.components";
 import { useState } from "react";
 
 import axios from 'axios';
 
+
 const FormLog = () => {
+    interface Data {
+        ok: boolean;
+        msg: string;
+        usrDB: {}
+    }
 
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [data, setData] = useState({} as Data);
 
-    const login = async():Promise<void> => {
+    const db = async(e: React.FormEvent):Promise<void> => {
+        e.preventDefault();
         const url = "http://localhost:3000/login";
-        const response = await axios.post(url, { 
-            email: email,
-            password: password 
+        const formData = new FormData(e.currentTarget);
+        const email = formData.get("uname") as string;
+        const password = formData.get("pass") as string;
+        const response = await axios.post(url, {
+            email,
+            password
         });
-        await console.log(response.data.msg);
-        alert(response.data.msg);
+         setData(response.data);
+        setIsSubmitted(true);
+    }
+
+    const logout = () => {
+        setIsSubmitted(false);
     }
 
 
 
+    const renderForm = (
+        <Form onSubmit={db}>
+            <FormCon >
+            <label>Correo:</label>   
+            <Input type="email" name="uname" placeholder="Enter Email" required></Input>
+            <label>Password:</label>   
+            <Input type="password" name="pass" placeholder="Enter Password" required></Input>
+            <ButtonF type="submit">Login</ButtonF>
+            </FormCon>
+        </Form>
+    )
+
     return (
         <>
         <center><h1> Login Form </h1></center>
-        <Form>
-            <FormCon>
-            <label>Correo:</label>   
-            <Input type="email" placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} required></Input>
-            <label>Password:</label>   
-            <Input type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} required></Input>
-            <ButtonF onChange={login}>Login</ButtonF>   
-            <ButtonC > Cancel</ButtonC>
-            </FormCon>
-        </Form>
+        {isSubmitted ? <Container>
+            <h1>{data.msg}</h1>
+            <ButtonF onClick={logout}>
+                Logout
+            </ButtonF>
+        </Container> : renderForm}
         </>
     );
 }
