@@ -13,7 +13,7 @@ const FormReg = () => {
 
     const sendData = async():Promise<void> => {
         if(password === password2){
-            const url = "http://localhost:3000/usuario";
+            const url = import.meta.env.VITE_API + '/usuario';
             const response = await axios.post(url, { 
                 nombre: name,
                 email: email,

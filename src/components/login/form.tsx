@@ -14,9 +14,9 @@ const FormLog = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [data, setData] = useState({} as Data);
 
-    const db = async(e: React.FormEvent):Promise<void> => {
+    const db = async(e: React.FormEvent | any):Promise<void> => {
         e.preventDefault();
-        const url = "http://localhost:3000/login";
+        const url = import.meta.env.VITE_API + '/login';
         const formData = new FormData(e.currentTarget);
         const email = formData.get("uname") as string;
         const password = formData.get("pass") as string;
