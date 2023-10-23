@@ -22,16 +22,21 @@ export const Container = styled.div<IProps>`
 `;
 
 export const Button = styled.button<IProps>`
-position: auto;
-  top: 25%;
-  background-color: #f1f1f1;
-  color: black;
-  font-size: 16px;
-  padding: 16px 30px;
-  border: none;
-  cursor: pointer;
+display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  background-color: #b2d7ff;
   border-radius: 5px;
-  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+`;
+
+export const Sp = styled.span<IProps>`
+padding: 10px 20px;
 `;
 
 export const Form = styled.form<IProps>`

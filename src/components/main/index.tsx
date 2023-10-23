@@ -1,15 +1,10 @@
-import { Flex } from "../styled.components";
-
-import Header from "./header";
-import Content from "./content";
+import Header from "../header/header";
+// import Content from "./content";
 
 const Main = (): JSX.Element => {
   return (
     <>
-      <Flex>
         <Header />
-        <Content />
-      </Flex>
     </>
   );
 };

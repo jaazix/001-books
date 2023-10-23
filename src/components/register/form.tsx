@@ -1,49 +1,85 @@
-import { ButtonC, ButtonF, Form,FormCon, Input } from "../styled.components";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
 const FormReg = () => {
 
-    const [name, setName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [password2, setPassword2] = useState<string>('');
 
+    const navigate = useNavigate();
+    const showAlert = () => {
+        const alert = document.getElementById('alert') as HTMLElement;
+        alert.style.display = 'block';
+    }
+    const hideAlert = () => {
+        const alert = document.getElementById('alert') as HTMLElement;
+        alert.style.display = 'none';
+    }
+    const [error, setError] = useState({});
 
-    const sendData = async():Promise<void> => {
-        if(password === password2){
+    const sendData = async(e: React.FormEvent | any):Promise<void> => {
+        const formData = new FormData(e.currentTarget);
+        const pass = formData.get("pass") as string;
+        const confpass = formData.get("confpass") as string;
+        if(pass === confpass){
             const url = import.meta.env.VITE_API + '/usuario';
-            const response = await axios.post(url, { 
-                nombre: name,
-                email: email,
-                password: password 
+            await axios.post(url, { 
+                nombre: formData.get("name") as string,
+                email: formData.get("mail") as string,
+                password: formData.get("pass") as string 
+            }).then((response) => {
+                console.log(response.data);
+                alert("Usuario registrado");
+                navigate('/login');
+            }).catch((error) => {
+                setError(error.response.data);
+                showAlert();
             });
-            console.log(response.data.msg);
-            alert(response.data.msg);
         }else{
-            alert("Las contraseñas no coinciden");
+            setError({msg: "Las contraseñas no coinciden"});
+            showAlert();
         }
     }
     
 
     return (
         <>
-        <center><h1> Register Form </h1></center>
-        <Form>
-            <FormCon>
-            <label>Nombre:</label>   
-            <Input type="text" placeholder="Ingresa tu nombre" onChange={(e) => setName(e.target.value)} required></Input>
-            <label>Email:</label>   
-            <Input type="email" placeholder="Ingresa tu correo" onChange={(e) => setEmail(e.target.value)} required></Input>
-            <label>Contraseña:</label>   
-            <Input type="password" placeholder="Ingresar Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe tener una longitud de almenos 8 caracteres, contener al menos una numero,una mayuscula, una minuscula y un caracter especial ($#@&*_+-)" onChange={(e) => setPassword(e.target.value)} required></Input>
-            <label>Confirmar Contraseña:</label>   
-            <Input type="password" placeholder="Ingresar Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe tener una longitud de almenos 8 caracteres, contener al menos una numero,una mayuscula, una minuscula y un caracter especial ($#@&*_+-)" onChange={(e) => setPassword2(e.target.value)} required></Input>
-            <ButtonF onClick={sendData}>Register</ButtonF>   
-            <ButtonC> Cancel</ButtonC>
-            </FormCon>
-        </Form>
+        <div>
+        <center><h1 className="fz"> Register Form </h1></center>
+        <div className="alert alert-danger" role="alert" id="alert" onClick={hideAlert}>
+                {error.msg}
+        </div>
+        <form onSubmit={sendData}>
+                <div className="form-outline mb-4">
+                    <input type="text" name="name"  className="form-control" />
+                    <label className="form-label">Nombre</label>
+                </div>
+                <div className="form-outline mb-4">
+                    <input type="email" name="mail"  className="form-control" />
+                    <label className="form-label">Correo</label>
+                </div>
+                <div className="form-outline mb-4">
+                    <input type="password" name="pass" className="form-control" />
+                    <label className="form-label">Password</label>
+                </div>
+                <div className="form-outline mb-4">
+                    <input type="password" name="confpass" className="form-control" />
+                    <label className="form-label">Confirm Password</label>
+                </div>
+                <div className="row mb-4">
+                    <div className="col d-flex justify-content-center">
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" />
+                            <label className="form-check-label">terms and conditions</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" className="btn btn-primary btn-block mb-4">Registrarse</button>
+                <div className="text-center">
+                    <p>Have an acound? <a href="#!" onClick={()=>navigate('/login')}>Login</a></p>
+                </div>
+            </form>   
+        </div>     
         </>
     );
 }
