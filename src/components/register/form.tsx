@@ -28,11 +28,11 @@ const FormReg = () => {
                 email: formData.get("mail") as string,
                 password: formData.get("pass") as string 
             }).then((response) => {
-                console.log(response.data);
+                console.log(response);
                 alert("Usuario registrado");
                 navigate('/login');
             }).catch((error) => {
-                setError(error.response.data);
+                console.log(error.response.data);
                 showAlert();
             });
         }else{

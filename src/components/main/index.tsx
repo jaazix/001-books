@@ -1,10 +1,11 @@
 import Header from "../header/header";
-// import Content from "./content";
+import Content from "./content";
 
 const Main = (): JSX.Element => {
   return (
     <>
-        <Header />
+        <Header/>
+        <Content/>
     </>
   );
 };
