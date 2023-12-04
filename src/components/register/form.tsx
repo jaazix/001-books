@@ -8,6 +8,7 @@ const FormReg = () => {
 
 
     const navigate = useNavigate();
+    
     const showAlert = () => {
         const alert = document.getElementById('alert') as HTMLElement;
         alert.style.display = 'block';
@@ -58,10 +59,20 @@ const FormReg = () => {
                     <input type="email" name="mail"  className="form-control" placeholder="Email"/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="password" name="pass" className="form-control" placeholder="Password"/>
+                    <input id="pass" type="password" name="pass" className="form-control" placeholder="Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$" title="La contraseña debe tener al menos 8 caracteres
+                                                                                                                                                                                    Debe contener al menos una letra minúscula.
+                                                                                                                                                                                    Debe contener al menos una letra mayúscula.
+                                                                                                                                                                                    Debe contener al menos un número.
+                                                                                                                                                                                    No debe contener números consecutivos.
+                                                                                                                                                                                    Ni debe contener letras consecutivas."  required/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="password" name="confpass" className="form-control" placeholder="Confirm Password"/>
+                    <input id="confpass" type="password" name="confpass" className="form-control" placeholder="Confirm Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$" title="La contraseña debe tener al menos 8 caracteres
+                                                                                                                                                                                    Debe contener al menos una letra minúscula.
+                                                                                                                                                                                    Debe contener al menos una letra mayúscula.
+                                                                                                                                                                                    Debe contener al menos un número.
+                                                                                                                                                                                    No debe contener números consecutivos.
+                                                                                                                                                                                    Ni debe contener letras consecutivas." required/>
                 </div>
                 <div className="row mb-4">
                     <div className="col d-flex justify-content-center">
@@ -71,7 +82,7 @@ const FormReg = () => {
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary btn-block mb-4">Sign Up</button>
+                <button id="submit" type="submit" className="btn btn-primary btn-block mb-4">Sign Up</button>
                 <div className="text-center">
                     <p>Have an acound? <a onClick={()=>navigate('/login')}>Login</a></p>
                 </div>
