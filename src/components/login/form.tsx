@@ -61,12 +61,12 @@ const FormLog = () => {
                 </div>
                 <div className="row mb-4">
                     <div className="col">
-                        <a>Forgot password?</a>
+                        <a style={{color:'blue', cursor: 'pointer'}}>Forgot password?</a>
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
                 <div className="text-center">
-                    <p>Not a member? <a onClick={()=>navigate('/register')}>Register</a></p>
+                    <p>Not a member? <a style={{color: 'blue', cursor: 'pointer'}} onClick={()=>navigate('/register')}>Register</a></p>
                 </div>
             </form>
         </div>

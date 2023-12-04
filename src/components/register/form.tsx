@@ -78,13 +78,13 @@ const FormReg = () => {
                     <div className="col d-flex justify-content-center">
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" value="" />
-                            <label className="form-check-label">I have read and agree to Bibliofilia <a onClick={()=>navigate('/terms')}>terms and conditions</a></label>
+                            <label className="form-check-label">I have read and agree to Bibliofilia <a style={{color:'blue', cursor: 'pointer'}} onClick={()=>navigate('/terms')}>terms and conditions</a></label>
                         </div>
                     </div>
                 </div>
                 <button id="submit" type="submit" className="btn btn-primary btn-block mb-4">Sign Up</button>
                 <div className="text-center">
-                    <p>Have an acound? <a onClick={()=>navigate('/login')}>Login</a></p>
+                    <p>Have an acound? <a style={{color:'blue', cursor: 'pointer'}} onClick={()=>navigate('/login')}>Login</a></p>
                 </div>
             </form>   
         </div>
