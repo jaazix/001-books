@@ -3,7 +3,7 @@ name: Bibliofilia app build and deploy to github pages
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
   build:

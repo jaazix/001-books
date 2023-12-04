@@ -14,6 +14,7 @@ const Content = () => {
     return (
         <>
         <div className="container">
+            <p>hello world</p>
             {localStorage.getItem('user') ? <div className="card">
             <div className="card-body">
                         <h3 className="card-title">{user.nombre}</h3>
