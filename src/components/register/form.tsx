@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { error } from "../../interfaces/interfaces";
 
 import axios from 'axios';
 
@@ -15,9 +16,10 @@ const FormReg = () => {
         const alert = document.getElementById('alert') as HTMLElement;
         alert.style.display = 'none';
     }
-    const [error, setError] = useState({});
+    const [error, setError] = useState({} as error);
 
     const sendData = async(e: React.FormEvent | any):Promise<void> => {
+        e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const pass = formData.get("pass") as string;
         const confpass = formData.get("confpass") as string;
@@ -29,8 +31,9 @@ const FormReg = () => {
                 password: formData.get("pass") as string 
             }).then((response) => {
                 console.log(response);
-                alert("Usuario registrado");
-                navigate('/login');
+                // save data in localstorage
+                localStorage.setItem('user', JSON.stringify(response.data.usrDB));
+                navigate('/');
             }).catch((error) => {
                 console.log(error.response.data);
                 showAlert();
@@ -40,46 +43,46 @@ const FormReg = () => {
             showAlert();
         }
     }
-    
 
-    return (
-        <>
-        <div>
+    const renderForm = (
+        <div className="">
         <center><h1 className="fz"> Register Form </h1></center>
         <div className="alert alert-danger" role="alert" id="alert" onClick={hideAlert}>
                 {error.msg}
         </div>
         <form onSubmit={sendData}>
                 <div className="form-outline mb-4">
-                    <input type="text" name="name"  className="form-control" />
-                    <label className="form-label">Nombre</label>
+                    <input type="text" name="name"  className="form-control" placeholder="Name"/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="email" name="mail"  className="form-control" />
-                    <label className="form-label">Correo</label>
+                    <input type="email" name="mail"  className="form-control" placeholder="Email"/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="password" name="pass" className="form-control" />
-                    <label className="form-label">Password</label>
+                    <input type="password" name="pass" className="form-control" placeholder="Password"/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="password" name="confpass" className="form-control" />
-                    <label className="form-label">Confirm Password</label>
+                    <input type="password" name="confpass" className="form-control" placeholder="Confirm Password"/>
                 </div>
                 <div className="row mb-4">
                     <div className="col d-flex justify-content-center">
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" value="" />
-                            <label className="form-check-label">terms and conditions</label>
+                            <label className="form-check-label">I have read and agree to Bibliofilia <a onClick={()=>navigate('/terms')}>terms and conditions</a></label>
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary btn-block mb-4">Registrarse</button>
+                <button type="submit" className="btn btn-primary btn-block mb-4">Sign Up</button>
                 <div className="text-center">
-                    <p>Have an acound? <a href="#!" onClick={()=>navigate('/login')}>Login</a></p>
+                    <p>Have an acound? <a onClick={()=>navigate('/login')}>Login</a></p>
                 </div>
             </form>   
-        </div>     
+        </div>
+    )
+    
+
+    return (
+        <>
+            {renderForm} 
         </>
     );
 }
