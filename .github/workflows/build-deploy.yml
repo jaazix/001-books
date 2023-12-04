@@ -7,13 +7,16 @@ on:
 
 jobs:
   build:
+    name: Push to main
     runs-on: ubuntu-latest
     steps:
-    -uses: actions/checkout@v3
-    -name: "install and build"
-    run: npm i && npm run build
-    -name: "Deploy"
-    uses: "JamesIves/github-pages-deploy-action@4.1.1"
-    with:
-      branch: gh-pages
-      folder: dist
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: install and build
+        run: npm i && npm run build
+      - name: Deploy
+        uses: "JamesIves/github-pages-deploy-action@4.1.1"
+        with:
+          branch: gh-pages
+          folder: dist
