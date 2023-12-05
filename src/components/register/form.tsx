@@ -60,19 +60,18 @@ const FormReg = () => {
                 </div>
                 <div className="form-outline mb-4">
                     <input id="pass" type="password" name="pass" className="form-control" placeholder="Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$" title="La contraseña debe tener al menos 8 caracteres
-                                                                                                                                                                                    Debe contener al menos una letra minúscula.
-                                                                                                                                                                                    Debe contener al menos una letra mayúscula.
-                                                                                                                                                                                    Debe contener al menos un número.
-                                                                                                                                                                                    No debe contener números consecutivos.
-                                                                                                                                                                                    Ni debe contener letras consecutivas."  required/>
+                    Debe contener al menos una letra minúscula.Debe contener al menos una letra mayúscula.
+                    Debe contener al menos un número.
+                    No debe contener números consecutivos.
+                    Ni debe contener letras consecutivas."  required/>
                 </div>
                 <div className="form-outline mb-4">
                     <input id="confpass" type="password" name="confpass" className="form-control" placeholder="Confirm Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$" title="La contraseña debe tener al menos 8 caracteres
-                                                                                                                                                                                    Debe contener al menos una letra minúscula.
-                                                                                                                                                                                    Debe contener al menos una letra mayúscula.
-                                                                                                                                                                                    Debe contener al menos un número.
-                                                                                                                                                                                    No debe contener números consecutivos.
-                                                                                                                                                                                    Ni debe contener letras consecutivas." required/>
+                    Debe contener al menos una letra minúscula.
+                    Debe contener al menos una letra mayúscula.
+                    Debe contener al menos un número.
+                    No debe contener números consecutivos.
+                    Ni debe contener letras consecutivas." required/>
                 </div>
                 <div className="row mb-4">
                     <div className="col d-flex justify-content-center">
