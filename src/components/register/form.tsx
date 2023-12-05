@@ -59,14 +59,14 @@ const FormReg = () => {
                     <input type="email" name="mail"  className="form-control" placeholder="Email"/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input id="pass" type="password" name="pass" className="form-control" placeholder="Password"  pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/" title="La contraseña debe tener al menos 8 caracteres
+                    <input id="pass" type="password" name="pass" className="form-control" placeholder="Password" title="La contraseña debe tener al menos 8 caracteres
                     Debe contener al menos una letra minúscula.Debe contener al menos una letra mayúscula.
                     Debe contener al menos un número.
                     No debe contener números consecutivos.
                     Ni debe contener letras consecutivas."  required/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input id="confpass" type="password" name="confpass" className="form-control" placeholder="Confirm Password"  pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/" title="La contraseña debe tener al menos 8 caracteres
+                    <input id="confpass" type="password" name="confpass" className="form-control" placeholder="Confirm Password"  title="La contraseña debe tener al menos 8 caracteres
                     Debe contener al menos una letra minúscula.
                     Debe contener al menos una letra mayúscula.
                     Debe contener al menos un número.
