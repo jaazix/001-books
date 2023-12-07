@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -9,8 +8,6 @@ const Content = () => {
     useEffect(() => {
         getBooks()
     })
-    // invoke user data from local storage
-    const navigate = useNavigate();
 
     const getBooks = async () => {
         const url = "https://openlibrary.org/search/authors.json?q=twain";
