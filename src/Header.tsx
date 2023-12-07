@@ -28,7 +28,7 @@ const Header = () =>{
                             </li>: null}
                         </ul>
                     { !localStorage.getItem('user') ? <Link className="btn btn-outline-success mx-2" to="login">Sign In</Link>: 
-                    <div>
+                    <div onClick={()=>navigate('login')}>
                         <img src='./user.svg' className="rounded-circle" />
                         <a> {user.nombre} </a>
                     </div>

@@ -29,13 +29,15 @@ const FormReg = () => {
             await axios.post(url, { 
                 nombre: formData.get("name") as string,
                 email: formData.get("mail") as string,
-                password: formData.get("pass") as string 
+                password: formData.get("pass") as string,
+                terms: formData.get("terms")
             }).then((response) => {
                 console.log(response);
                 // save data in localstorage
                 localStorage.setItem('user', JSON.stringify(response.data.usrDB));
                 navigate('/');
             }).catch((error) => {
+                setError(error.response.data);
                 console.log(error.response.data);
                 showAlert();
             });
@@ -59,24 +61,25 @@ const FormReg = () => {
                     <input type="email" name="mail"  className="form-control" placeholder="Email"/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input id="pass" type="password" name="pass" className="form-control" placeholder="Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$" title="La contraseña debe tener al menos 8 caracteres
-                    Debe contener al menos una letra minúscula.Debe contener al menos una letra mayúscula.
-                    Debe contener al menos un número.
-                    No debe contener números consecutivos.
-                    Ni debe contener letras consecutivas."  required/>
+                    <input id="pass" type="password" name="pass" className="form-control" placeholder="Password" title="La contraseña debe tener al menos 8 caracteres
+Debe contener al menos una letra minúscula.
+Debe contener al menos una letra mayúscula.
+Debe contener al menos un número.
+No debe contener números consecutivos.
+Ni debe contener letras consecutivas."  required/>
                 </div>
                 <div className="form-outline mb-4">
-                    <input id="confpass" type="password" name="confpass" className="form-control" placeholder="Confirm Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$" title="La contraseña debe tener al menos 8 caracteres
-                    Debe contener al menos una letra minúscula.
-                    Debe contener al menos una letra mayúscula.
-                    Debe contener al menos un número.
-                    No debe contener números consecutivos.
-                    Ni debe contener letras consecutivas." required/>
+                    <input id="confpass" type="password" name="confpass" className="form-control" placeholder="Confirm Password" title="La contraseña debe tener al menos 8 caracteres
+Debe contener al menos una letra minúscula.
+Debe contener al menos una letra mayúscula.
+Debe contener al menos un número.
+No debe contener números consecutivos.
+Ni debe contener letras consecutivas." required/>
                 </div>
                 <div className="row mb-4">
                     <div className="col d-flex justify-content-center">
                         <div className="form-check">
-                            <input className="form-check-input" type="checkbox" value="" />
+                            <input id="terms" name="terms" className="form-check-input" type="checkbox" value="true" title="Acepte los terminos y condiciones para rgistrarse" required/>
                             <label className="form-check-label">I have read and agree to Bibliofilia <a style={{color:'blue', cursor: 'pointer'}} onClick={()=>navigate('/terms')}>terms and conditions</a></label>
                         </div>
                     </div>

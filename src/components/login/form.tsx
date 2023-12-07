@@ -17,8 +17,6 @@ const FormLog = () => {
     }
 
     const [error, setError] = useState({} as error);
-    
-    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
 
     const db = async(e: React.FormEvent | any):Promise<void> => {
         e.preventDefault();
@@ -41,12 +39,8 @@ const FormLog = () => {
         });
     }
 
-    const logout = () => {
-        localStorage.removeItem('user');
-        navigate('/');
-    }
-
-    const renderForm = (
+    return (
+        <>
         <div>
             <center><h1 className="fz">Login Form</h1></center>
             <div className="alert alert-danger" role="alert" id="alert" onClick={hideAlert}>
@@ -70,18 +64,6 @@ const FormLog = () => {
                 </div>
             </form>
         </div>
-    )
-
-    return (
-        // if user exist in localstorage, show data else show form
-        <>
-        { localStorage.getItem('user') ? <div className="card">
-                <div className="card-body">
-                    <h3 className="card-title">{`Bienvenido ${usuario.nombre}`}</h3>
-                    <p className="card-text">{JSON.stringify(usuario)}</p>
-                    <button className="btn btn-danger" onClick={logout}>Log out</button> 
-                </div>
-            </div>: renderForm}
         </>
     );
 }
