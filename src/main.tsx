@@ -12,6 +12,8 @@ import Users from './components/users/users.tsx';
 import Chat from './components/chat/chat.tsx';
 import Terms from './components/terminos/terms.tsx';
 import Main from './components/main/index.tsx';
+import Recover from './components/recover/index.tsx';
+import MailForm from './components/recover/mailForm.tsx';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -25,6 +27,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path='users' element={<Users/>} />
           <Route path='chat' element={<Chat/>} />
           <Route path='terms' element={<Terms/>}/>
+          <Route path='recover' element={<Recover/>}/>
+          <Route path='mail' element={<MailForm/>}/>
         </Route>
       </Routes>
     </HashRouter>

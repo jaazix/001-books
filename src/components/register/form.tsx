@@ -6,9 +6,7 @@ import axios from 'axios';
 
 const FormReg = () => {
 
-
     const navigate = useNavigate();
-    
     const showAlert = () => {
         const alert = document.getElementById('alert') as HTMLElement;
         alert.style.display = 'block';
@@ -92,7 +90,6 @@ Ni debe contener letras consecutivas." required/>
         </div>
     )
     
-
     return (
         <>
             {renderForm} 

@@ -55,7 +55,7 @@ const FormLog = () => {
                 </div>
                 <div className="row mb-4">
                     <div className="col">
-                        <a style={{color:'blue', cursor: 'pointer'}}>Forgot password?</a>
+                        <a style={{color:'blue', cursor: 'pointer'}} onClick={()=>navigate('/mail')}>Forgot password?</a>
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
