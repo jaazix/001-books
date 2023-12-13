@@ -1,4 +1,28 @@
+import axios from "axios";
+import { useParams } from "react-router-dom"
+
 const Recover = ():JSX.Element => {
+
+    const {token} = useParams();
+
+    const newPass = async (e: React.FormEvent | any):Promise<void>=>{
+        const url = import.meta.env.VITE_API + '/usuario/recover';
+        const formData = new FormData(e.currentTarget);
+        if(formData.get("pass") !== formData.get("passconf")){
+            console.log("Las contraseñas no coinciden");
+            return;
+        }
+        axios.put(url, {
+            token: token,
+            password: formData.get("pass")
+        }).then((response) => {
+            console.log(response.data);
+        }
+        ).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
+
     return (
         <>
         <section className="bg-light py-3 py-md-5">
@@ -30,7 +54,7 @@ const Recover = ():JSX.Element => {
                         </div>
                     <div className="col-12">
                     <div className="d-grid">
-                        <button className="btn btn-primary btn-lg" type="submit">Update password</button>
+                        <button className="btn btn-primary btn-lg" type="submit" onClick={newPass}>Update password</button>
                     </div>
                     </div>
                 </div>

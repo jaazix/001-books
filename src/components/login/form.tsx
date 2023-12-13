@@ -41,7 +41,7 @@ const FormLog = () => {
 
     return (
         <>
-        <div>
+        <div className="col-md-6 mb-6 mx-auto">
             <center><h1 className="fz">Login Form</h1></center>
             <div className="alert alert-danger" role="alert" id="alert" onClick={hideAlert}>
                 {error.msg}

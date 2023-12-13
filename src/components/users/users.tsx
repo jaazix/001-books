@@ -10,6 +10,7 @@ const Users = () => {
         getUsers()
     })
 
+    // get users from api
     const getUsers = async () => {
         const url = import.meta.env.VITE_API + '/usuario/list';
         const token = JSON.parse(localStorage.getItem('user') || '{}')
@@ -20,6 +21,40 @@ const Users = () => {
         }).then((response) => {
             setUsers(response.data.usuarios);
             console.log(response.data.usuarios);
+        }
+        ).catch((error) => {
+            console.log(error.response.data);
+        });
+    }
+    // lock or unlock user
+    const lockUser = async (email: string) => {
+        const url = import.meta.env.VITE_API + '/usuario/lock';
+        const token = JSON.parse(localStorage.getItem('user') || '{}')
+        await axios.put(url, {
+            email: email
+        }, {
+            headers: {
+                'authorization': 'Bearer ' + token.token
+            }
+        }).then((response) => {
+            console.log(response.data);
+        }
+        ).catch((error) => {
+            console.log(error.response.data);
+        });
+    }
+
+    const unlockUser = async (email: string) => {
+        const url = import.meta.env.VITE_API + '/usuario/unlock';
+        const token = JSON.parse(localStorage.getItem('user') || '{}')
+        await axios.put(url, {
+            email: email
+        }, {
+            headers: {
+                'authorization': 'Bearer ' + token.token
+            }
+        }).then((response) => {
+            console.log(response.data);
         }
         ).catch((error) => {
             console.log(error.response.data);
@@ -53,7 +88,8 @@ const Users = () => {
                                             <button className="btn btn-primary" onClick={() => navigate('/users/edit/' + user.id)}>Edit</button>
                                         </td>
                                         <td>
-                                            <button className="btn btn-danger" onClick={() => navigate('/users/delete/' + user.id)}>Delete</button>
+                                            {user.estado ? <button className="btn btn-danger" onClick={()=>lockUser(user.email)}>Bloquear</button>:
+                                            <button className="btn btn-success" onClick={() => unlockUser(user.email)}>Desbloquear</button>}
                                         </td>
                                     </tr>
                                 ))}

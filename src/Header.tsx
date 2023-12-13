@@ -30,7 +30,7 @@ const Header = () =>{
                     { !localStorage.getItem('user') ? <Link className="btn btn-outline-success mx-2" to="login">Sign In</Link>: 
                     <div onClick={()=>navigate('login')}>
                         <img src='./user.svg' className="rounded-circle" />
-                        <a> {user.nombre} </a>
+                        <a> {user.name} </a>
                     </div>
                     }
                     </div>

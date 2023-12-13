@@ -16,7 +16,7 @@ export interface error {
 // interface user
 export interface user {
     _id: string;
-    nombre: string;
+    name: string;
     email: string;
     password: string;
     role: string;
