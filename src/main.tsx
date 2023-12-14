@@ -15,6 +15,7 @@ import Main from './components/main/index.tsx';
 import Recover from './components/recover/index.tsx';
 import MailForm from './components/recover/mailForm.tsx';
 import Profile from './components/profile/index.tsx';
+import AddBook from './components/addBook/index.tsx';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path='recover/:token' element={<Recover/>}/>
           <Route path='mail' element={<MailForm/>}/>
           <Route path='profile' element={<Profile/>}/>
+          <Route path='addBook' element={<AddBook/>}/>
         </Route>
       </Routes>
     </HashRouter>

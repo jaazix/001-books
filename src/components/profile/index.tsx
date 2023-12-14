@@ -1,3 +1,4 @@
+import { auto } from "@popperjs/core";
 import "./profile.scss"
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +10,10 @@ const Profile = ():JSX.Element => {
     const logout = () => {
         localStorage.removeItem('user');
         navigate('/');
+    }
+
+    const addBook = () => {
+        navigate('/addBook');
     }
 
     return (
@@ -33,7 +38,7 @@ const Profile = ():JSX.Element => {
         <div className="col-lg-8">
             <div className="card shadow-sm">
             <div className="card-header bg-transparent border-0">
-                <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Personal info</h3>
+                <h3 className="mb-0"><i className="far fa-clone pr-1">Personal info</i></h3>
             </div>
             <div className="card-body pt-0">
                 <table className="table table-bordered">
@@ -47,13 +52,31 @@ const Profile = ():JSX.Element => {
             </div>
             <div style={{height: 26}}></div>
             <div className="card shadow-sm">
-            <div className="card-header bg-transparent border-0">
-                <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Other Information</h3>
+                <div className="card-header bg-transparent border-0">
+                    <h3 className="mb-0"><i className="far fa-clone pr-1">Libros cargados</i></h3>
+                </div>
             </div>
-            <div className="card-body pt-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-            </div>
+            <div style={{height: 26}}></div>
+                <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                    <div className="col-lg-3" onClick={addBook}>
+                        <div className="card shadow-sm" style={{height: auto}}>
+                            <div className="card-header">
+                                <img className="card-img-top" src="plus.png" alt="Card image cap"/>
+                            </div>
+                            <div className="card-body pt-0">
+                                <p>Add Book</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="card shadow-sm">
+                        <img className="card-img-top" src="https://m.media-amazon.com/images/I/81MamVMxYnL._AC_UF894,1000_QL80_.jpg" alt="Card image cap"/>
+                            <div className="card-body pt-0">
+                                <p><strong>titulo:</strong>86</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         </div>
     </div>

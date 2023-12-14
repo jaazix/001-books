@@ -46,7 +46,7 @@ const FormReg = () => {
     }
 
     const renderForm = (
-        <div className="">
+        <div>
         <center><h1 className="fz"> Register Form </h1></center>
         <div className="alert alert-danger" role="alert" id="alert" onClick={hideAlert}>
                 {error.msg}
