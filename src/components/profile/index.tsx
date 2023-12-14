@@ -33,34 +33,14 @@ const Profile = ():JSX.Element => {
         <div className="col-lg-8">
             <div className="card shadow-sm">
             <div className="card-header bg-transparent border-0">
-                <h3 className="mb-0"><i className="far fa-clone pr-1"></i>General Information</h3>
+                <h3 className="mb-0"><i className="far fa-clone pr-1"></i>Personal info</h3>
             </div>
             <div className="card-body pt-0">
                 <table className="table table-bordered">
                 <tr>
-                    <th style={{width:"30%"}}>Roll</th>
+                    <th style={{width:"30%"}}>Bio:</th>
                     <td width="2%">:</td>
-                    <td>125</td>
-                </tr>
-                <tr>
-                    <th style={{width:"30%"}} >Academic Year	</th>
-                    <td width="2%">:</td>
-                    <td>2020</td>
-                </tr>
-                <tr>
-                    <th style={{width:"30%"}}>Gender</th>
-                    <td width="2%">:</td>
-                    <td>Male</td>
-                </tr>
-                <tr>
-                    <th style={{width:"30%"}}>Religion</th>
-                    <td width="2%">:</td>
-                    <td>Group</td>
-                </tr>
-                <tr>
-                    <th style={{width:"30%"}}>blood</th>
-                    <td width="2%">:</td>
-                    <td>B+</td>
+                    <td>{usuario.bio}</td>
                 </tr>
                 </table>
             </div>

@@ -42,7 +42,7 @@ const Recover = ():JSX.Element => {
             <div className="col-12 col-lg-9">
             <div className="bg-white border rounded shadow-sm overflow-hidden">
 
-                <form action="#!">
+                <form onSubmit={newPass}>
                 <div className="row gy-4 gy-xl-5 p-4 p-xl-5">
                     <div className="col-12">
                     <label htmlFor="pass" className="form-label">Enter your new password <span className="text-danger">*</span></label>
@@ -54,7 +54,7 @@ const Recover = ():JSX.Element => {
                         </div>
                     <div className="col-12">
                     <div className="d-grid">
-                        <button className="btn btn-primary btn-lg" type="submit" onClick={newPass}>Update password</button>
+                        <button className="btn btn-primary btn-lg" type="submit">Update password</button>
                     </div>
                     </div>
                 </div>
